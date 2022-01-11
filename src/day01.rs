@@ -125,7 +125,7 @@ const INPUT: &[u16] = &[
     9989, 9996, 9995, 10024, 10025, 10026, 10028, 10040, 10041, 10040, 10041, 10044,
 ];
 
-pub(super) fn part1() {
+pub(super) fn run() {
     println!("DAY01 PART1: {}", count_increases(INPUT));
     println!("DAY01 PART2: {}", count_increases_window(INPUT));
 }
