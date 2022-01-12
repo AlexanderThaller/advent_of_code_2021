@@ -23,7 +23,10 @@ impl Submarine {
 #[cfg(test)]
 mod test {
     use super::Submarine;
-    use crate::day02::input::EXAMPLE;
+    use crate::day02::input::{
+        EXAMPLE,
+        INPUT,
+    };
 
     mod run_command {
         #[test]
@@ -39,6 +42,21 @@ mod test {
 
             assert_eq!(submarine.horizontal_position, 15);
             assert_eq!(submarine.depth, 10);
+        }
+
+        #[test]
+        fn input() {
+            let mut submarine = super::Submarine::default();
+
+            super::INPUT
+                .iter()
+                .map(|line| line.parse().unwrap())
+                .for_each(|command| submarine.run_command(command));
+
+            dbg!(&submarine);
+
+            assert_eq!(submarine.horizontal_position, 1957);
+            assert_eq!(submarine.depth, 955);
         }
     }
 }
