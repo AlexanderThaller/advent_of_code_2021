@@ -1,15 +1,11 @@
-pub(super) fn run() {
-    todo!()
-}
-
 #[derive(Debug, Eq, PartialEq)]
-enum Move {
-    Forward(u16),
-    Down(u16),
-    Up(u16),
+pub(super) enum Command {
+    Forward(u8),
+    Down(u8),
+    Up(u8),
 }
 
-impl std::str::FromStr for Move {
+impl std::str::FromStr for Command {
     type Err = String;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
@@ -36,26 +32,20 @@ impl std::str::FromStr for Move {
 
 #[cfg(test)]
 mod test {
-    use super::Move;
-
-    const EXAMPLE: &str = "forward 5
-down 5
-forward 8
-up 3
-down 8
-forward 2";
+    use super::Command;
+    use crate::day02::input::EXAMPLE;
 
     mod from_str {
         #[test]
         fn example() {
-            use super::Move::*;
+            use super::Command::*;
 
             let expected = vec![Forward(5), Down(5), Forward(8), Up(3), Down(8), Forward(2)];
 
             let got = super::EXAMPLE
                 .lines()
                 .map(|line| line.parse().unwrap())
-                .collect::<Vec<super::Move>>();
+                .collect::<Vec<super::Command>>();
 
             dbg!(&got);
 
